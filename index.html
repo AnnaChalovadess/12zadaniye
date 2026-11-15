@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Тренажёр ЕГЭ · Задание 12</title>
+<style>
+:root{--bg:#f6f4fb;--card:#fff;--tx:#241b3a;--mu:#6d6585;--ac:#5b3fd0;--ac2:#e8e2fb;--ok:#1f9d63;--okb:#dff5ea;--er:#d6403f;--erb:#fde4e3;--bd:#e0daf0}
+@media(prefers-color-scheme:dark){:root{--bg:#16121f;--card:#221c33;--tx:#efeaff;--mu:#a89fc4;--ac:#9b86ff;--ac2:#33294f;--ok:#4cd391;--okb:#17382b;--er:#ff7b7a;--erb:#432024;--bd:#3a3059}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,sans-serif;padding:16px}
+.w{max-width:760px;margin:auto}h1{font-size:1.5rem;margin:.2em 0}.sub{color:var(--mu);margin:0 0 14px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button,.b{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:9px 16px;border-radius:12px;cursor:pointer;transition:.15s}
+.tabs button.on,.b.p{background:var(--ac);color:#fff;border-color:var(--ac)}.b:hover,.tabs button:hover{transform:translateY(-1px)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;box-shadow:0 4px 18px rgba(80,60,160,.08)}
+.stat{display:flex;gap:14px;color:var(--mu);font-size:.9rem;margin-bottom:10px}.bar{height:6px;background:var(--ac2);border-radius:9px;overflow:hidden;margin-bottom:14px}.bar i{display:block;height:100%;background:var(--ac);transition:.3s}
+.word{font-size:2rem;font-weight:700;text-align:center;margin:10px 0 18px}.gap{display:inline-block;min-width:1.1em;border-bottom:3px solid var(--ac);color:var(--ac);text-align:center}
+.q{font-weight:600;margin:12px 0 8px}.row{display:flex;gap:8px;flex-wrap:wrap}.row .b{min-width:56px;font-size:1.1rem}
+.ok{background:var(--okb)!important;border-color:var(--ok)!important;color:var(--ok)!important}.er{background:var(--erb)!important;border-color:var(--er)!important;color:var(--er)!important;animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+input,select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx)}
+.msg{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--ac2);font-size:.95rem}.done{color:var(--ok);font-weight:600}
+.chain{display:flex;gap:6px;flex-wrap:wrap;font-size:.85rem;margin-bottom:8px}.chain span{background:var(--ac2);border-radius:99px;padding:3px 10px}.chain span.c{background:var(--ok);color:#fff}
+table{width:100%;border-collapse:collapse}td{padding:8px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td.n{width:24px;font-weight:700;color:var(--ac)}.w2{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}.w2 b{min-width:150px}
+.chip{display:inline-block;border:3px solid transparent;border-radius:10px;padding:2px 8px;cursor:pointer;font-weight:700}.pal{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.pal button{font:inherit;border:3px solid;border-radius:12px;background:var(--card);color:var(--tx);padding:6px 10px;cursor:pointer}.pal button.on{color:#fff}
+.mnw{display:flex;gap:14px;align-items:center;margin:2px 0 10px;flex-wrap:wrap}.mn{font-size:1.3rem;opacity:.35;letter-spacing:1px}.mn.on{opacity:1;font-weight:700}.mn u{text-decoration:none;color:var(--mu)}.mn.on u{color:#fff;background:var(--ac);border-radius:6px;padding:0 5px}
+.ov{position:fixed;inset:0;background:rgba(20,10,40,.6);display:flex;align-items:center;justify-content:center;padding:14px;z-index:9}.ov .card{max-width:640px;max-height:90vh;overflow:auto}
+.w2 select{padding:5px 6px;font-size:.85rem}.fb{font-size:.85rem;color:var(--mu)}
+.sc{display:grid;gap:10px}.sc .card{padding:14px}.sc h3{margin:0 0 6px;font-size:1rem;color:var(--ac)}.tag{display:inline-block;background:var(--ac2);border-radius:8px;padding:2px 8px;margin:2px;font-size:.9rem}.tag.t2{background:var(--erb)}
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.flow{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>✍️ Тренажёр · ЕГЭ, задание 12</h1><p class="sub">Гласные в суффиксах причастий и личных окончаниях глаголов</p>
+<div class="tabs"><button class="on" data-t="A">Пятёрочка: по шагам</button><button data-t="B">Задания ЕГЭ</button><button data-t="C">Схема</button></div>
+<div id="A"></div><div id="B" hidden></div><div id="C" hidden></div></div>
+<script>
+const $=s=>document.querySelector(s);
+// [слово, ответ, время н/п, инфинитив, спряжение I/II или nn/vsh]
+const D=[["Они курлыч_т","у","н","курлыкать","I"],["Они тащ_тся","а","н","тащиться","II"],["Он бормоч_т","е","н","бормотать","I"],["Он завис_т","и","н","зависеть","II"],["Он выздоров_т","ее","н","выздороветь","I"],["Они наде_тся","ю","н","надеяться","I"],["Снега раста_т","ю","н","растаять","I"],["Он опротив_т","ее","н","опротиветь","I"],["Печь пыш_т жаром","е","н","пыхать","I"],["Если выпиш_те","е","н","выписать","I"],["Лес выгор_т","и","н","выгореть|гореть","II"],["Теш_щийся игрушкой","а","н","тешиться","II"],["Тащ_щий бревно","а","н","тащить","II"],["Леле_мый внук","е","н","лелеять","I"],["Незыбл_мый","е","н","зыбить","I","Исключение: глагол зыбить — I спряжения, поэтому незыблемый."],
+["Вывал_нный в снег","е","п","вывалить","nn"],["Закашл_вшийся","я","п","закашляться","vsh"],["Припа_нный","я","п","припаять","nn"],["Насто_нный на травах","я","п","настоять","nn"],["Навеш_нные фонари","а","п","навешать","nn"],["Замеш_нный раствор","е","п","замесить","nn"],["Выкач_нный из сарая","е","п","выкатить","nn"],["Скач_нный файл","а","п","скачать","nn"],["Ненавид_вший","е","п","ненавидеть","vsh"],["Постро_нный","е","п","построить","nn"],["Обгрыз_нный","е","п","обгрызть","nn"],["Вороч_вшийся","а","п","ворочаться","vsh"],["Посе_вший","я","п","посеять","vsh"],["Накле_вший","и","п","наклеить","vsh"],["Вытерп_вший","е","п","вытерпеть","vsh"],["Выровн_нный","е","п","выровнять","nn"],["Увенч_нный","а","п","увенчать","nn"],["Раста_вший","я","п","растаять","vsh"]];
+const L=[..."аяеиую"];const G=w=>w.replace("_",'<span class="gap">?</span>');
+let pool,i=0,step=0,sc=0,mis=0,tot=0;
+function shuf(a){return a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1])}
+function newA(){pool=shuf(D);i=0;sc=0;tot=0;item()}
+function item(){step=0;mis=0;drawA()}
+function drawA(m,extra){
+ if(i>=pool.length){$("#A").innerHTML=`<div class="card"><div class="word">🎉 ${sc} из ${tot}</div><p style="text-align:center">Без ошибок с первого раза. </p><div class="row" style="justify-content:center"><button class="b p" onclick="newA()">Ещё раз</button></div></div>`;return}
+ const d=pool[i],p=d[2]=="п",C=p?["Время","Инфинитив","Буква"]:["Время","Инфинитив","Спряжение","Буква"];
+ let h=`<div class="card"><div class="stat"><span>Слово ${i+1}/${pool.length}</span><span>✅ ${sc}</span></div><div class="bar"><i style="width:${i/pool.length*100}%"></i></div>
+ <div class="chain">${C.map((c,k)=>`<span class="${k<step?'c':''}">${k+1}. ${c}</span>`).join("")}</div><div class="word">${G(d[0])}</div>`;
+ if(step==0)h+=`<div class="q">1. Какое время?</div><div class="row"><button class="b" onclick="tm('н',this)">Настоящее</button><button class="b" onclick="tm('п',this)">Прошедшее</button></div>`;
+ if(step==1)h+=`<div class="q">2. Образуй инфинитив от слова «${d[0].replace("_","…")}»</div><div class="row"><input id="inf" placeholder="например, делать" onkeydown="if(event.key=='Enter')ci()"><button class="b p" onclick="ci()">Проверить</button><button class="b" onclick="msg('Инфинитив: <b>${d[3].split('|')[0]}</b>');mis++">Подсказка</button></div>`;
+ if(step==2&&!p)h+=`<div class="q">3. Спряжение глагола «${d[3]}»? <span class="fb">(посмотри исключения на вкладке «Схема»)</span></div><div class="row"><button class="b" onclick="cj('I',this)">I</button><button class="b" onclick="cj('II',this)">II</button></div>`;
+ if(step==(p?2:3)){const r=p?(d[4]=="nn"?"Перед -нн- берём только <b>а, я</b>; вместо всего остального — <b>е</b> (искл. выровненный).":"Перед -вш- и в глаголе буква берётся из инфинитива."):(d[4]=="I"?"I спр.: у/ю, е":"II спр.: а/я, и");
+  h+=`<div class="q">${p?3:4}. Вставь букву <span class="fb">${r}</span></div>${p?"":MN(d[4])}<div class="row">${LS(d).map(x=>`<button class="b" onclick="lt('${x}',this)">${x}</button>`).join("")}</div>`}
+ if(step==9)h+=`<div class="msg done">Верно: <b>${d[0].replace("_","<u>"+d[1]+"</u>")}</b> — ${p?"прош. время, инфинитив «"+d[3].split("|")[0]+"»":"наст. время, «"+d[3].split("|")[0]+"», "+d[4]+" спр."}${d[5]?"<br>"+d[5]:""}</div><div class="row" style="margin-top:12px"><button class="b p" onclick="nx()">Дальше →</button></div>`;
+ if(m)h+=`<div class="msg">${m}</div>`;$("#A").innerHTML=h+"</div>";}
+function LS(d){if(d[2]=="п")return L;const a=d[4]=="I"?["е","у","ю"]:["и","а","я"];return d[1]=="ее"?[...a,"ее"]:a}
+function MN(sp){const w=(t,on)=>`<span class="mn ${on?'on':''}">${[...t].map((c,k)=>"аяеиую".includes(c)?`<u>${c}</u>`:c).join("")}</span>`;return `<div class="mnw">${w("целую",sp=="I")}${w("милая",sp=="II")}<span class="fb">${sp=="I"?"I спряжение: е, у, ю":"II спряжение: и, а, я"}</span></div>`}
+function msg(t){drawA(t)}
+function bad(b,t){mis++;b&&b.classList.add("er");setTimeout(()=>b&&b.classList.remove("er"),500);if(t)setTimeout(()=>drawA(t),0)}
+function tm(v,b){if(v==pool[i][2]){step=1;drawA()}else{bad(b);drawA("Подумай: суффикс -л-, -вш-, -нн- → прошедшее; окончания -ет, -ит, -ут, -ат, -ущ-, -ащ- → настоящее.")}}
+function ci(){const v=$("#inf").value.trim().toLowerCase().replace(/ё/g,"е");if(pool[i][3].split("|").includes(v)){step=2;drawA()}else{mis++;drawA("Не совпало. Инфинитив отвечает на вопрос «что делать?», приставку оставляем.")}}
+function cj(v,b){if(v==pool[i][4]){step=3;drawA()}else{bad(b);drawA("Проверь: -ить, исключения II спр. и «то, что не слышим» (лаять, таять…)")}}
+function lt(x,b){const d=pool[i];if(x==d[1]){tot++;if(!mis)sc++;step=9;drawA()}else{bad(b)}}
+function nx(){if(!mis);i++;if(i==pool.length)tot=tot;item()}
+// ЕГЭ: слова [текст,буква,категория] s=вы- ударная, p=прошедшее, x=исключение, c=спрягаем
+const T=[
+{n:"Линия 12 №73943",a:"1235",r:[["ненавид_вший","е","p","засте́л_м (постель)","е","x"],["насто_нный (чай)","я","p","зала_вшая (собака)","я","p"],["вылет_шь","и","s","слыш_м","и","x"],["неприемл_мый","е","c","движ_мый","и","c"],["(море) рокоч_т","е","c","(журавль) курлыч_т","е","c"]]},
+{n:"Линия 12 №75645",a:"135",r:[["расходу_мый","е","c","кол_шь (дрова)","е","c"],["(друзья) выкро_т (время)","я","s","ве_щий (ветерок)","ю","c"],["трат_щий","я","c","(шефы) постро_т","я","c"],["(учителя) цен_т","я","c","сия_щий","ю","c"],["(экскаваторы) ро_т","ю","c","сме_щий","ю","c"]]},
+{n:"Линия 12 №2939",a:"134",r:[["зате_вший (спор)","я","p","(родители) серд_тся","я","c"],["(она) обид_тся","и","x","высуш_нное (бельё)","е","p"],["выбер_шь","е","s","вытр_шь (пыль)","е","s"],["смеш_нный (лес)","а","p","вороч_вшийся","а","p"],["трепещ_щий (от восторга)","у","c","(друзья) выруч_т","а","cs"]]}];
+const COL={p:["#2f6fe0","① Прошедшее время — синий"],s:["#1f9d63","② Приставка вы-́ (тянет ударение) — зелёный"],x:["#d6403f","③ Исключения — красный"],c:["#e0a800","④ Остальное (спрягаем) — жёлтый"]};
+const HINT={p:"Синим выдели все слова в прошедшем времени, даже если глагол — исключение (ненавидевший, зависевший): мы их не спрягаем. Букву бери из инфинитива (перед -нн-: а, я, вместо остального е).",s:"Зелёным — слова с приставкой вы-, которая тянет ударение. Отбрось её: окончание ударное (живЁт → е, горИшь → и).",x:"Красным — исключения только в настоящем времени (слышать, держать, гнать, обидеть, зыбить, стелить…). Вспомни спряжение и впиши букву.",c:"Жёлтым — всё остальное. Инфинитив → спряжение → буква."};
+T.push({n:"Линия 12 №66496",a:"345",r:[["(собаки) чу_т","ю","c","(ученики) ответ_т","я","c"],["(враги) ка_тся","ю","c","(ветра) гон_т","я","x"],["вскоч_шь","и","c","вспен_вшийся","и","p"],["обяж_шь","е","c","предусмотр_нный","е","p"],["дремл_щий (дедушка)","ю","c","(туманы) стел_тся","ю","x"]]},
+{n:"Линия 12 №74939",a:"125",r:[["скро_нный (костюм)","е","p","довер_нный","е","p"],["крикн_шь","е","c","незыбл_мый","е","x"],["(мы) прогон_м","и","x","выгляд_вший (хорошо)","е","p"],["(демонстранты) маш_т (флагами)","у","c","тащ_щий (в гору)","а","c"],["знач_щий (для меня)","а","c","(санки ещё) послуж_т","а","c"]]});
+const TD=[
+[75668,"завещ_нный=а|скро_нный=е|(коты) мурлыч_т=у|жажд_щий (успеха)=у|стел_шь=е|неприемл_мый=е|гон_щий=я|пол_щий=ю|выбер_шь=е|закле_нный=е"],
+[2378,"раскраш_нный=е|(картины) развеш_ны=а|постигн_шь=е|замет_вший=и|дорогосто_щие=я|необстрел_нный=я|(абитуриенты) выдерж_т=а|колыш_щиеся=у|(родители) щекоч_т=у|реж_щие=у"],
+[74940,"мел_шь=е|несмолка_мый=е|(курицы) кудахч_т=у|слыш_щийся=а|сыпл_шь=е|(он) движ_тся=е|незыбл_мый=е|(едва) слыш_мый=и|заморож_нный=е|замеш_нное (тесто)=е"],
+[1972,"выгор_шь=и|огранич_вший=и|курлыч_щие=у|(рыбы) дыш_т=а|(родители) тревож_тся=а|тащ_щаяся=а|уполномоч_нный=е|слыш_мый=и|скоропорт_щиеся=я|выгул_нный=я"],
+[2829,"(скоро) увид_мся=и|расстро_вшись=и|(цветок) жажд_т=е|удосто_нный=е|выбь_мся=е|выздоров_вший=е|(дети) спряч_тся=у|дыш_щий=а|видне_щийся=ю|(листья) осыпа_тся=ю"],
+[62954,"обид_вшийся=е|повер_вший=и|обла_нный=я|исследу_мый=е|трепещ_щий=у|(волны) грохоч_т=у|(геологи) ищ_т=у|хлопоч_щая=у|(он) выжив_т=е|выкач_нный=е"],
+[58612,"клянч_щий=а|(дети) плач_т=у|замет_шь=и|немысл_мые=и|(в) колыш_щейся=у|защебеч_т=у|выгон_шь=и|освеща_мый=е|выкидыва_шь=е|обиж_нный=е"],
+[37111,"разве_шь=е|знач_мый=и|выгляд_шь=и|ненавид_мый=и|бормоч_щий=у|(родители) науч_т=а|провер_шь=и|(кот) мурлыч_т=е|(фонтан) брызж_т=е|постро_нный=е"],
+[64523,"загон_шь=и|(ветер) свищ_т=е|тревож_вшийся=и|(он) наточ_т=и|(они) топч_т=у|блещ_щий=у|надломл_нный=е|насто_нный=я|окраш_нный=е|улучш_нный=е"],
+[79240,"бре_шься=е|крикн_шь=е|терп_щий=я|обла_нный=я|(травы) колыш_тся=у|(дети) спряч_тся=у|напомн_вший=и|умнож_вший=и|волну_щийся=ю|вер_щий=я"],
+[764,"полощ_шь=е|муч_мый=и|обид_вшись=е|приемл_мый=е|ла_щая=ю|(они) заплат_т=я|скач_нный=а|(звуки) слыш_тся=а|(мы) пляш_м=е|закле_нный=е"],
+[2108,"терп_щий=я|(пассажиры) дремл_т=ю|(всё) забуд_тся=е|невменя_мый=е|обгрыз_нный=е|обезум_вший=е|долож_шь=и|уменьш_нный=е|(друзья) выруч_т=а|пороч_щий=а"],
+[79364,"бор_мся=е|мысл_шь=и|(книги) утеш_т=а|(куры) кудахч_т=у|(ты) мел_шь=е|(он) движ_тся=е|наруш_нный=е|завыш_нный=е|незыбл_мая=е|(едва) слыш_мый=и"],
+[1803,"рассе_нный=я|(он) стара_тся=ю|(виновный) раска_тся=ю|незабыва_мый=е|прокат_шься=и|повер_вший=и|противореч_щий=а|(вещи) высуш_тся=а|беспоко_щаяся=я|(кулинары) замес_т=я"],
+[66800,"(пациенты) леч_тся=а|маяч_щий=а|завис_шь=и|подстриж_нный=е|бор_шься=е|воспева_мый=е|проед_шься=е|необита_мый=е|верт_шься=и|обнаруж_нный=е"],
+[66676,"пропол_шь=е|невид_мый=и|(они) маж_тся=у|огнедыш_щий=а|пил_шь=и|мысл_мый=и|(ветер) перемен_тся=и|движ_мый=и|отыщ_шь=е|подстрел_нный=е"],
+[79255,"(они мне) повер_т=я|порт_щиеся=я|став_шь=и|(флаг) ре_т=е|(звери) чу_т=ю|(пассажиры) дремл_т=ю|изобража_мый=е|потер_нный=я|независ_мый=и|повер_вший=и"],
+[2804,"ненавид_щий=я|высме_нный=я|ве_щий=ю|(птицы) корм_тся=я|реж_щий=у|(они) держ_т=а|дремл_шь=е|предрасполож_нный=е|зыбл_щийся=ю|(листья) распуска_тся=ю"],
+[37344,"знаком_шься=и|сморщ_нный=е|относ_шься=и|(один раз) выключ_вший=и|стро_щий=я|(претенденты) бор_тся=ю|перевяж_шь=е|неотъемл_мое=е|мо_щиеся=ю|(избы) топ_тся=я"],
+[82043,"(дети) помир_тся=я|(куры) корм_тся=я|расходу_мый=е|колебл_мый=е|ран_т=и|кол_шь=е|наде_вшийся=я|зате_вший=я|каж_щийся=у|спеш_щий=а"],
+[1754,"кол_щийся=ю|(льды) та_т=ю|шепч_шь=е|независ_мый=и|леч_щий=а|(планы) руш_тся=а|увер_нный=е|ненавид_вший=е|щур_щийся=я|(друзья) увид_тся=я"],
+[79577,"(они) стара_тся=ю|(листья) осыпа_тся=ю|рассе_нное=я|насто_нный=я|удосто_нный=е|(скоро) увид_мся=и|хохоч_щий=у|дыш_щий=а|видне_щийся=ю|ночу_щий=ю"],
+[79232,"проветр_шь=и|замет_вший=и|дорогосто_щие=я|ла_щая=ю|пряч_шься=е|огранич_вший=и|(они) держ_т=а|(шнурки) развяж_тся=у|довер_нное=е|увид_нное=е"],
+[2415,"выкидыва_шь=е|увид_нный=е|замет_шь=и|муч_мый=и|провоз_шься=и|несгиба_мый=е|(пациенты) леч_тся=а|маяч_щий=а|(его обещания ничего не) сто_т=я|леле_щая=ю"],
+[81502,"предъявля_шь=е|воссоздава_мый=е|онеме_шь=е|ожида_мый=е|(он) оглядыва_тся=е|просуш_шь=и|свер_шь=и|укороч_нный=е|напил_шь=и|закле_вший=и"]];
+const cat=w=>{const s=w.replace(/\([^)]*\)/g,"").trim();return /_(нн|вш|ны)/.test(s)?"p":/^вы/.test(s)?"s":/(слыш|дыш|держ|гон|обид|вид|завис|терп|верт|зыбл|стел)_|^бре_/.test(s)?"x":"c"};
+T.push(...TD.map(([id,z])=>{const it=z.split("|").map(x=>x.split("="));const r=[];for(let k=0;k<10;k+=2)r.push([it[k][0],it[k][1],cat(it[k][0]),it[k+1][0],it[k+1][1],cat(it[k+1][0])]);return{n:"Линия 12 №"+id,a:r.map((x,k)=>x[1]==x[4]?k+1:"").join(""),r}}));
+let act="p",mk={},Q=[],qi=0,ph=0,res=[],fix=[],done=false;
+const CN=c=>COL[c[0]][1].slice(2),pl=w=>w.replace("_","…");
+function startB(){Q=shuf(T.map((t,k)=>k)).slice(0,5);qi=0;ph=0;res=[];fix=[];drawB()}
+function drawB(){mk={};act="p";done=false;const t=T[Q[qi]];let h=`<div class="card"><div class="stat"><span>${ph?"🔁 Работа над ошибками":"Задание"} ${qi+1} из ${Q.length}</span></div><div class="bar"><i style="width:${qi/Q.length*100}%"></i></div>${ph?'<div class="msg" style="margin:0 0 10px">Реши заново задания, в которых были ошибки.</div>':''}<p class="q">${t.n}. Укажите варианты, в которых в обоих словах одного ряда пропущена одна и та же буква.</p>
+<div class="pal">${Object.keys(COL).map(c=>`<button id="p${c}" style="border-color:${COL[c][0]}" onclick="setAct('${c}')">${COL[c][1]}</button>`).join("")}</div><div class="msg" id="hint" style="margin:0 0 10px"></div><table>`;
+ t.r.forEach((r,k)=>{h+=`<tr><td class="n">${k+1}</td><td>`;for(let j=0;j<2;j++){const id=k+"_"+j;
+ h+=`<div class="w2"><b><span class="chip" id="w${id}" onclick="mkw('${id}')">${G(r[j*3])}</span></b><select id="l${id}"><option value="">буква</option>${L.map(x=>`<option>${x}</option>`).join("")}</select><span class="fb" id="f${id}"></span></div>`}
+ h+=`</td></tr>`});
+ h+=`</table><div class="row" style="margin-top:14px"><input id="ans" placeholder="Ответ: номера" size="10"><button class="b p" id="bc" onclick="chkB()">Проверить</button><button class="b p" id="bn" onclick="nextB()" hidden>${qi==Q.length-1?(ph?"Показать результаты":"Завершить"):"Дальше →"}</button></div><div id="res"></div></div><div id="ov"></div>`;$("#B").innerHTML=h;setAct("p")}
+function setAct(c){act=c;for(const k in COL){const b=$("#p"+k);b.classList.toggle("on",k==c);b.style.background=k==c?COL[k][0]:""}$("#hint").textContent=HINT[c]}
+function mkw(id){if(done)return;mk[id]=mk[id]==act?"":act;$("#w"+id).style.borderColor=mk[id]?COL[mk[id]][0]:"transparent"}
+function chkB(){if(done)return;done=true;const t=T[Q[qi]],E=[];
+ t.r.forEach((r,k)=>{for(let j=0;j<2;j++){const id=k+"_"+j,m=mk[id]||"",l=$("#l"+id).value,cok=m&&r[j*3+2].includes(m),lok=l==r[j*3+1],ok=cok&&lok;
+ if(!ok)E.push({w:pl(r[j*3]),c:cok?"":CN(r[j*3+2]),m:m?CN(m):"не выделено",l:lok?"":r[j*3+1],g:l||"—"});
+ $("#f"+id).innerHTML=ok?"✅":`❌ ${cok?"":"рамка: <b>"+CN(r[j*3+2])+"</b>. "}${lok?"":"Буква: <b>"+r[j*3+1]+"</b>. "}${cok?"":HINT[r[j*3+2][0]]}`;$("#f"+id).style.color=ok?"var(--ok)":"var(--er)"}});
+ const v=$("#ans").value.replace(/\D/g,"").split("").sort().join(""),ok=v==t.a;
+ if(ph)fix.push({k:Q[qi],ok:ok&&!E.length});else res.push({k:Q[qi],v,ok,E});
+ $("#res").innerHTML=`<div class="msg ${ok&&!E.length?'done':''}">${ok?"✅ Ответ верный: "+t.a:"❌ Ответ: <b>"+t.a+"</b>"}${E.length?" · ошибок в рамках/буквах: "+E.length:" · все рамки и буквы верны 🎉"}</div>`;
+ $("#bc").hidden=true;$("#bn").hidden=false}
+function nextB(){if(qi<Q.length-1){qi++;drawB();return}
+ if(!ph){const bad=res.filter(r=>!r.ok||r.E.length).map(r=>r.k);if(bad.length){ph=1;Q=bad;qi=0;drawB();return}}
+ finB()}
+function finB(){const n=res.filter(r=>r.ok&&!r.E.length).length;
+ const rows=res.map((r,k)=>{const t=T[r.k],f=fix.find(x=>x.k==r.k),clean=r.ok&&!r.E.length;
+ return `<div class="msg" style="margin:8px 0;background:${clean?'var(--okb)':'var(--erb)'}"><b>${k+1}. ${t.n}</b> — ${clean?"✅ без ошибок":"❌"}<br>Твой ответ: ${r.v||"—"} · верный: ${t.a}${r.E.map(e=>`<br>• <b>${e.w}</b>: ${e.c?"рамка — нужно «"+e.c+"» (у тебя: "+e.m+"). ":""}${e.l?"Буква — нужна «"+e.l+"» (у тебя: "+e.g+").":""}`).join("")}${f?`<br>🔁 Работа над ошибками: ${f.ok?"исправлено ✅":"снова есть ошибки ❌"}`:""}</div>`}).join("");
+ $("#ov").innerHTML=`<div class="ov"><div class="card"><div class="word" style="margin:0 0 6px">🏁 Результат: ${n} из ${res.length}</div><p class="sub" style="text-align:center">заданий выполнено без ошибок с первого раза</p>${rows}<div class="row" style="justify-content:center;margin-top:12px"><button class="b p" onclick="startB()">Новые 5 заданий</button></div></div></div>`}
+// Схема
+function drawC(){const tg=(a,c)=>a.split(" ").map(x=>`<span class="tag ${c||''}">${x}</span>`).join("");
+$("#C").innerHTML=`<div class="sc"><div class="card"><h3>Алгоритм</h3><div class="flow"><div><b>Настоящее время</b><br>1) образуй инфинитив<br>2) определи спряжение: I или II<br>3) I → у/ю, е; II → а/я, и<br><span class="fb">Причастия: -ущ-/-ющ- (I), -ащ-/-ящ- (II)</span></div><div><b>Прошедшее время</b><br>• глагол и перед -вш-: буква как в инфинитиве<br>• перед -нн-: берём только <b>а, я</b>, вместо остального — <b>е</b><br><span class="fb">(найти → найденный; искл. выровненный)</span></div></div></div>
+<div class="card"><h3>Слова с вы-́</h3>Если приставка вы- ударная, отбрасываем её: <b>вы́живет</b> → живЁт → е; <b>вы́горишь</b> → горИшь → и; <b>вы́бьемся</b> → бьЁмся → е.</div>
+<div class="card"><h3>I спряжение (не на -ить) + исключения</h3>${tg("брить стелить зиждиться")}<br><span class="fb">и то, что не слышим [й]:</span><br>${tg("лаять таять маяться чуять чаять каяться сеять реять веять блеять тлеть надеяться лелеять кашлять")}</div>
+<div class="card"><h3>II спряжение (на -ить) + исключения</h3>${tg("слышать дышать держать гнать смотреть видеть обидеть ненавидеть зависеть терпеть вертеть","t2")}<br>${tg("спать гореть кипеть глядеть клеить строить мучить","t2")}</div></div>`}
+document.querySelectorAll(".tabs>button[data-t]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs>button[data-t]").forEach(x=>x.classList.toggle("on",x==b));["A","B","C"].forEach(k=>$("#"+k).hidden=k!=b.dataset.t)});
+newA();startB();drawC();
+</script></body></html>
